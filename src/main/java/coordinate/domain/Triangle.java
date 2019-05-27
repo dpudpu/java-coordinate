@@ -9,17 +9,6 @@ public final class Triangle extends RealFigure {
         super(points, new LinesTriangleGenerator(points));
     }
 
-    private double calculateS(final Lines lines) {
-        return lines.lengths().stream().mapToDouble(Double::doubleValue).sum() / 2.0;
-    }
-
-    private double calculateX(final Lines lines, final double s) {
-        return s * lines.lengths()
-                .stream()
-                .mapToDouble(length -> s - length)
-                .reduce(1, (a, b) -> a * b);
-    }
-
     @Override
     public int size() {
         return NUMBER_OF_POINTS;
@@ -29,6 +18,17 @@ public final class Triangle extends RealFigure {
     public double area() {
         Lines lines = super.getLines();
         return Math.sqrt(calculateX(lines, calculateS(lines)));
+    }
+
+    private double calculateS(final Lines lines) {
+        return lines.lengths().stream().mapToDouble(Double::doubleValue).sum() / 2.0;
+    }
+
+    private double calculateX(final Lines lines, final double s) {
+        return s * lines.lengths()
+                .stream()
+                .mapToDouble(length -> s - length)
+                .reduce(1, (a, b) -> a * b);
     }
 
     @Override

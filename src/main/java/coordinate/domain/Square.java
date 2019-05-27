@@ -31,7 +31,7 @@ public final class Square extends RealFigure {
 
     @Override
     public double area() {
-        return super.getLines().lengths().get(0) * super.getLines().lengths().get(2);
+        return getLines().getLength(0) * getLines().getLength(2);
     }
 
     @Override
